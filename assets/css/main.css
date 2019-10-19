@@ -1409,10 +1409,7 @@
 	}
 
 	body {
-		background-color: #000;
-		background-image: url("../../images/bg.jpg");
-		background-size: cover;
-		background-position: top center;
+        background: linear-gradient(360deg, rgba(2,33,62,1) 0%, rgb(52, 85, 92) 100%);
 	}
 
 		body.is-loading *, body.is-loading *:before, body.is-loading *:after {
