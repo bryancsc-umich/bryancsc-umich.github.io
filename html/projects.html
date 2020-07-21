@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<head>
+    <title>Bryan Chan Chuing Seang</title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/projects.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/css/font.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+
+    <!-- Load Bootstrap. -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body class="black-bg">
+    <nav class="nav nav-justified site-header navbar-expand-lg sticky-top py-1">
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav" id="navbarSupportedContent">
+            <a class="nav-item nav-link" href="/index.html">Home</a>
+            <a class="nav-item nav-link" href="/html/resume.html">Resume</a>
+            <a class="nav-item nav-link active" href="/html/projects.html">Projects</a>
+            <a class="nav-item nav-link" href="/html/experience.html">Work Experience</a>
+            <a class="nav-item nav-link" href="/html/coursework.html">Course Work</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1 class="centered page-title">
+        Personal Projects
+    </h1>
+
+    <div class="row justify-content-center">
+        <div class="card-list col-md-6 col-sm-10">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Order App</h5>
+                    <p class="card-text">
+                        An Android app built to help restaurant owners during Covid-19.
+                        Register customer orders using the mobile app and simply click a button to automate a phone call or send an SMS to inform the customer when an order is ready.
+                    </p>
+                    <p class="card-text">
+                        <i>Built with Flask and Android.</i>
+                    </p>
+                    <img class="proj_img" width="200px" src="/data/projects/order_app/orders_page.PNG">
+                    <img class="proj_img" width="200px" src="/data/projects/order_app/new_order_page.PNG">
+                    <img class="proj_img" width="200px" src="/data/projects/order_app/new_order_page_call_logs.PNG">
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">ReMi: Conversation Cooking Assistant</h5>
+                    <p class="card-text">
+                        Anyone who cooks will realize how useful it is to have another individual helping you out.
+                        Sometimes you forget the recipe steps, sometimes you need alternative ingredients, or perhaps
+                        you need to convert between units. This project can be thought of as a specialized version
+                        of Alexa/OK Google with respect to culinary preparation. It provides a chat interface to common
+                        kitchen functionalities such as recipe walkthroughs, ingredient substitutions, unit conversions and even timers!
+                    </p>
+                    <p class="card-text">
+                        <i>Built with Flask, HTML, CSS and JavaScript.</i>
+                    </p>
+                    
+                    <img class="proj_img" src="/data/projects/remi/chat_page.jpg">
+                    <img class="proj_img" src="/data/projects/remi/recipe_page.jpg">
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Handshake</h5>
+                    <p class="card-text">
+                        Contracts are usually a lengthy annoying part of life. We usually communicate contracts using lengthy email threads and it's annoying to sign them.
+                        Plus, many of us would draft simple contracts during our everyday lives (such as sublease agreements and freelance work) but many of us aren't experienced in drafting contracts.
+                        
+                        Introducing Handshake (making contracts as easy as a handshake). This web-app enables people to <i>easily</i> draft and sign contracts and includes a feature that allow users to create and share contract templates with the rest of the user community for common scenarios.
+                    </p>
+                    <p class="card-text">
+                        <i>Built with Flask and React.</i>
+                    </p>
+                        <img class="proj_img" src="/data/projects/handshake/handshake_contracts.PNG">
+                        <img class="proj_img" src="/data/projects/handshake/handshake_home.PNG">
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Form Bot Dialogue Management System</h5>
+                    <p class="card-text">                                
+                        Play around with the existing open source chatbot creation platforms and you will realize that
+                        many platforms place their focus on identifying a user intents. However, they aren't exactly 
+                        well-designed when it comes to defining a "user path".
+
+                        However, a user path is usually what we need when it comes to structured data collection. Sometimes what we need is a blend between old-fashion logic and neural-network based entity extraction.
+                        
+                        This dialogue management system does exactly that. It allows you to define a specific user path the old-fashioned way while also exposing intent and entity extraction for your use.
+                    </p>
+                    <p class="card-text">                                
+                        <i>Built withBuilt with Flask and Rasa Open Source.</i>
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Version Control App for the Everyday Person</h5>
+                    <p class="card-text">                                
+                        A Python application that exposes the most useful functions in version control with a simple, colorful GUI abstraction to the
+                        everyday user. It has four buttons: select directory, add checkpoint, view a checkpoint and view the latest checkpoint.
+                        Everyone can enjoy version control without having ever heard the word Git. Here is a demo video!
+                    </p>
+                    <p class="card-text">                                
+                        <i>Built with Python.</i>
+                    </p>
+                    <video class="proj_img" controls>
+                        <source src="/data/projects/version_control/VersionControlAppDemo.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Image Recognition Diagnosis App</h5>
+                    <p class="card-text">
+                        A mobile application that diagnoses visible illnesses using image recognition.
+                        The user uploads a capture of their condition and the mobile app provides a diagnosis based on a trained model.
+                        A rudimentary version can that diagnoses chicken pox and sunburns can be viewed at the repository linked above.
+                        Here are some screengrabs and a demo video!
+                    </p>
+                    <p class="card-text">                                
+                        <i>Built with Android.</i>
+                    </p>
+                    <img class="proj_img" src="/data/projects/img_diagnosis/diagnosis_app_home.jpg">
+                    <img class="proj_img" src="/data/projects/img_diagnosis/diagnosis_app_treatment.jpg">
+                    <iframe class="proj_img" src="https://www.youtube.com/embed/KjOFg5G5p28" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Natural Language Diagnosis Software</h5>
+                    <p class="card-text">
+                        An advanced extension on the image recognition diagnosis app mentioned above. A user can input a description of
+                        a disease in natural text and the system will provide a list of top matching diseases. The underlying concept that drives this
+                        system is a boosting algorithm and the data used to train the system was collected using a web crawler. The system also has
+                        a novel query expansion mechanism that attempts to produce different re-expressions of a query such that the query does
+                        not necessarily need to have words that match a relevant disease’s description in our database.
+                    </p>
+                    <p class="card-text">                                
+                        <i>Built with Python.</i>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body
