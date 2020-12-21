@@ -91,13 +91,15 @@
 
     <div id="turn" style="text-align: center; margin-top: 20px;"></div>
 
-    <div id="tokens" style="text-align: center; margin-top: 20px;">
-        <button id="s" class="btn btn-info" onclick="onTokenClick(this)"><span id="s_label">Small</span></button>
+    <div style="display: flex; justify-content: center; margin-top: 20px;">
+        <div id="tokens" class="btn-group" role="group">
+            <button id="s" type="button" class="btn btn-info" onclick="onTokenClick(this)"><span id="s_label">Small</span></button>
 
-        <button id="m" class="btn btn-info" onclick="onTokenClick(this)"><span id="m_label">Medium</span></button>
+            <button id="m" type="button" aria-pressed="true" class="btn btn-info" onclick="onTokenClick(this)"><span id="m_label">Medium</span></button>
 
-        <button id="l" class="btn btn-info" onclick="onTokenClick(this)"><span id="l_label">Large</span></button>
-    </div>  
+            <button id="l" type="button" class="btn btn-info" onclick="onTokenClick(this)"><span id="l_label">Large</span></button>
+        </div>  
+    </div>
 </div>
 <script src="./rojako.js"></script>
 </body>

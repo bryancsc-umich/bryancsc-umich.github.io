@@ -5,6 +5,11 @@ var players = {
 
 var currPlayer = 1;
 var selectedToken = null;
+var tokenChoices = {
+    s: 'Small',
+    m: 'Medium',
+    l: 'Large'
+}
 
 function init() {
     for (let i = 1; i <= 9; i++) {
@@ -28,12 +33,10 @@ function init() {
     players[3].color = 'green';
     players[4].color = 'purple';
 
-    currPlayer = 1;
     selectedToken = null;
     
-    document.getElementById('turn').innerText = "Player " + players[currPlayer].color + "'s turn."
-    setTokenChoicesForPlayer(currPlayer);
-    // setTokenChoicesVisible(true);
+    currPlayer = 4; // Wraps around to 1.
+    nextTurn();
 }
 
 function onCellClick(elt) {
@@ -41,11 +44,10 @@ function onCellClick(elt) {
     // setTokenChoicesVisible(false);
     let selectedCell = parseInt(elt.id, 10);
     if (board[selectedCell][selectedToken] !== 0) {
-        showError();
+        showError("This cell already has a " + players[board[selectedCell][selectedToken]].color + "-colored " + tokenChoices[selectedToken] + " sized token!");
         return;
     }
     let newRing = document.createElement('div');
-    console.log(selectedToken);
     if (selectedToken === 's') {
         newRing.classList.add("ring_small", "shadow-lg")
         newRing.style.background = players[currPlayer].color;
@@ -64,8 +66,9 @@ function onCellClick(elt) {
         let winningAnnouncement = "Player " + players[currPlayer].color + " has won!";
         alert(winningAnnouncement)
         init();
+        return;
     }
-    nextTurn();    
+    nextTurn();
 }
 
 function nextTurn() {
@@ -75,66 +78,53 @@ function nextTurn() {
     else {
         currPlayer += 1;
     }
-    document.getElementById('turn').innerText = "Player " + players[currPlayer].color + "'s turn."
+    document.getElementById('turn').innerHTML = `Player <strong style=\"color: ${players[currPlayer].color}\">` + players[currPlayer].color + "'s</strong> turn."
     setTokenChoicesForPlayer(currPlayer);
-    // setTokenChoicesVisible(true);
 }
 
 function onTokenClick(elt) {
-    console.log("ID", elt.id);
-    selectedToken = elt.id;
-}
-
-function setTokenChoicesVisible(flag) {
-    if (flag) {
-        document.getElementById('tokens').style.display = 'block';    
-    } else {
-        document.getElementById('tokens').style.display = 'none';
+    if (elt.classList.contains('disabled')) {
+        return;
     }
+
+    document.getElementById('s').classList.remove('active');
+    document.getElementById('m').classList.remove('active');
+    document.getElementById('l').classList.remove('active');
+    selectedToken = elt.id;
+    elt.classList.add('active');
 }
 
 function setTokenChoicesForPlayer(playerID) {
-    let tokenChoices = {
-        s: 'Small',
-        m: 'Medium',
-        l: 'Large'
-    }
-    let chosen = false;
+    let defaultChosen = false;
     for (token in tokenChoices) {
-        if (players[playerID][token] !== 0) {
-            console.log(token);
-            document.getElementById(token+'_label').innerText = tokenChoices[token] + " (" + players[playerID][token] + ")"
-            if (chosen === false) {
-                chosen = true;
-                // document.getElementById(token).parentNode.classList.add('active');
-                selectedToken = token;
-            } else {
-                // document.getElementById(token).parentNode.classList.remove('active');
-            }
-        } else {
-            console.log(document.getElementById(token).parentNode);
-            document.getElementById(token).parentNode.style.visibility = 'hidden';
+
+        document.getElementById(token+'_label').innerText = tokenChoices[token] + " (" + players[playerID][token] + ")"
+        
+        // Reset all buttons.
+        document.getElementById(token).classList.remove('active', 'disabled');
+
+        // If player still has 0 of this token.
+        if (players[playerID][token] === 0) {
+            document.getElementById(token).classList.add('disabled');
+        }
+        
+        // Default not selected yet.
+        else if (players[playerID][token] > 0 && defaultChosen === false) {
+            defaultChosen = true;
+            selectedToken = token;
+            document.getElementById(token).classList.add('active');
         }
     }
 }
 
-function getSelectedItem() {
-    if (document.getElementById('s').hasAttribute('checked')) {
-        return 's';
-    } else if (document.getElementById('m').hasAttribute('checked')) {
-        return 'm';
-    }
-    return 'l';
-}
-
-function showError() {
-    alert("TODO.")
+function showError(errMsg) {
+    alert(errMsg);
 }
 
 function verifyBoard(selectedCell, selectedToken) {
     selectedCell = parseInt(selectedCell, 10);
     // Check if current cell has all current player's tokens.
-    if (selectedCell.s === currPlayer && selectedCell.m === currPlayer && selectedCell.l === currPlayer) {
+    if (board[selectedCell].s === currPlayer && board[selectedCell].m === currPlayer && board[selectedCell].l === currPlayer) {
         return true;
     }
 
