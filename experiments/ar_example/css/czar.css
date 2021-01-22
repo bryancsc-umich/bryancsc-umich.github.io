@@ -1,0 +1,52 @@
+.czar_centered {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateY(-25%); 
+    transform: translateX(-50%);
+    text-align: center;
+    /* Needs to be above all layers or QR will be distorted. */
+    z-index: 10000;
+}
+
+.czar_centered .czar_qr  {
+    max-width: 500px;
+    height: auto;
+}
+
+
+@media only screen and (orientation: portrait) {
+    /* Rules for portrait mode screen. */
+
+    @media (max-width: 700px) {
+        /* Rules for portrait mode screen < width 700px. */
+        .czar_centered .czar_qr  {
+            width: 200px;
+        }
+
+        @media (max-width: 500px) {
+            /* Rules for portrait mode screen < width 500px. */
+            .czar_centered .czar_qr  {
+                width: 150px;
+            }
+        }
+    }
+}
+
+@media only screen and (orientation: landscape) {
+    /* Rules for landscape mode screen. */
+
+    @media (max-height: 500px) {
+        /* Rules for landscape mode screen < height 500px. */
+        .czar_centered .czar_qr  {
+            width: 200px;
+        }
+
+        @media (max-height: 400px) {
+            /* Rules for landscape mode screen < height 400px. */
+            .czar_centered .czar_qr  {
+                width: 150px;
+            }
+        }
+    }
+}
