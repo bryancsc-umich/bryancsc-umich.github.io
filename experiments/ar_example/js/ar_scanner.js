@@ -17,36 +17,79 @@ window.addEventListener('load', function() {
         if (photoLibraryLink.charAt(photoLibraryLink.length - 1) != '/') {
             photoLibraryLink += '/';
         }
-    
-        // Set the image and perform error checking.
-        document.getElementById('content_img').addEventListener('error', reportError)
-        document.getElementById('cover_img').addEventListener('error', reportError)
-        document.getElementById('innercover_img').addEventListener('error', reportError)
-        document.getElementById('backcover_img').addEventListener('error', reportError)
-    
-        document.getElementById('innercover_img').src = photoLibraryLink + 'innercover.png';
-        document.getElementById('backcover_img').src = photoLibraryLink + 'backcover.png';
-        document.getElementById('cover_img').src = photoLibraryLink + 'cover.png';
-        document.getElementById('content_img').src = photoLibraryLink + 'content.png';
 
-        // Link entities to images
-        let innercover_mat = document.getElementById('innercover').getAttribute('material');
-        let backcover_mat = document.getElementById('backcover').getAttribute('material');
-        let cover_mat = document.getElementById('cover').getAttribute('material');
-        let content_mat = document.getElementById('content').getAttribute('material');
+        const assetExtensions = ['.png', '.jpeg', '.gif']
+        // Note: Place .gif last as gif library modifies element.
 
-        innercover_mat.src = '#innercover_img'
-        backcover_mat.src = '#backcover_img'
-        cover_mat.src = '#cover_img'
-        content_mat.src = '#content_img'
+        function setTexture(entityId, noFormatMatchCallback) {
 
-        document.getElementById('innercover').setAttribute('material', innercover_mat);
-        document.getElementById('backcover').setAttribute('material', backcover_mat);
-        document.getElementById('cover').setAttribute('material', cover_mat);
-        document.getElementById('content').setAttribute('material', content_mat);
+            // Which extension to try.
+            function useExtension(assetEltId, entityId, extensionIdx) {
+                // Specific settings for .gif.
+                if (assetExtensions[extensionIdx] === '.gif') {
+                    const gifElt = document.getElementById(assetEltId);
+                    gifElt.addEventListener('load', function() {
+                        // Parse gif element.
+                        let gifObj = new SuperGif({ gif: gifElt, progressbar_height: 0 });
+                        let frameList = []
+                        
+                        gifObj.load(function() {
+                            // Split gif into image frames.
+                            for (let frameId = 0; frameId < gifObj.get_length(); frameId++) {
+                                gifObj.move_to(frameId);
+                                frameList.push(gifObj.get_canvas().toDataURL());
+                            }
 
-        // Update.
-        document.querySelector('a-scene').flushToDOM(true);
+                            // Set interval to update card AR model with gif image frames.
+                            let frameRate = new URLSearchParams(window.location.search).get('fr');
+                            if (frameRate === null) {
+                                frameRate = 500;    // Default framerate to 500ms.
+                            }
+                            let frameIdx = 0;
+                            function changeFrame() {                                
+                                let entityMaterial = document.getElementById(entityId).getAttribute('material');
+                                entityMaterial.src = frameList[frameIdx];
+                                document.getElementById(entityId).setAttribute('material', entityMaterial);
+                                frameIdx = (frameIdx+1)%frameList.length;
+                            }
+                            setInterval(changeFrame, frameRate);
+                        })
+                    });
+                    gifElt.src = photoLibraryLink + entityId + assetExtensions[extensionIdx];
+                }
+                
+                else {
+                    document.getElementById(assetEltId).src = photoLibraryLink + entityId + assetExtensions[extensionIdx];
+                    let entityMaterial = document.getElementById(entityId).getAttribute('material');
+                    entityMaterial.src = '#' + assetEltId;
+                    document.getElementById(entityId).setAttribute('material', entityMaterial);
+                }
+            }
+
+            // Cycle and try extensions in extension list.
+            const assetEltId = entityId + '_img';
+            let extIdx = 0;
+            document.getElementById(assetEltId).addEventListener('error', function() {
+                if (extIdx === assetExtensions.length - 1) {
+                    noFormatMatchCallback();
+                } else {
+                    extIdx += 1
+                    useExtension(assetEltId, entityId, extIdx);
+                }
+            });
+            useExtension(assetEltId, entityId, extIdx);
+        }
+
+        setTexture('cover', reportError);
+        setTexture('innercover', reportError);
+        setTexture('content', reportError);
+        // Don't report error if backcover does not exist 
+        // since backcover is not necessarily available.
+        setTexture('backcover', function() {
+            let entityMaterial = document.getElementById('backcover').getAttribute('material');
+            entityMaterial.src = './placeholder_backcover.png';
+            document.getElementById('backcover').setAttribute('material', entityMaterial);
+        });
     }
 
     setUpCardTextures();
