@@ -1,0 +1,19 @@
+<html>
+<head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="remap.js"></script>
+    <script src="test_360_canvas.js"></script>
+</head>
+<body>
+    <a-scene id="my-scene">
+        <a-videosphere id="videoShere" loop="true" src="#my-canvas" rotation="0 -90 0"></a-videosphere>
+    </a-scene>
+    <video id="my-video" controls="true" width="720" height="480" crossorigin="anonymous" muted>
+    <!-- <video src="http://jplayer.org/video/webm/Big_Buck_Bunny_Trailer.webm" id="my-video" controls="true" width="720" height="480" crossorigin="anonymous" muted> -->
+        <!-- <source src="http://jplayer.org/video/webm/Big_Buck_Bunny_Trailer.webm" type="video/webm"> -->
+        <source src="./testvid2.mp4" type="video/mp4">
+    </video>
+    <canvas id="my-canvas" width="720" height="480"></canvas>
+</body>
+</html>
