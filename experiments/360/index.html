@@ -1,18 +1,17 @@
 <html>
 <head>
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
     <script src="remap.js"></script>
     <script src="test_360_canvas.js"></script>
 </head>
 <body>
+    <video src="#" id="my-video-2" controls="true" width="720" height="480" crossorigin="anonymous" muted style="display: none;" playsinline></video>
     <a-scene id="my-scene">
-        <a-videosphere id="videoShere" loop="true" src="#my-canvas" rotation="0 -90 0"></a-videosphere>
+        <a-videosphere id="videoShere" loop="true" src="#my-video-2" rotation="0 -90 0"></a-videosphere>
     </a-scene>
-    <video id="my-video" controls="true" width="720" height="480" crossorigin="anonymous" muted>
-    <!-- <video src="http://jplayer.org/video/webm/Big_Buck_Bunny_Trailer.webm" id="my-video" controls="true" width="720" height="480" crossorigin="anonymous" muted> -->
-        <!-- <source src="http://jplayer.org/video/webm/Big_Buck_Bunny_Trailer.webm" type="video/webm"> -->
-        <source src="./testvid2.mp4" type="video/mp4">
+    <video id="my-video" controls="true" width="720" height="480" crossorigin="anonymous" muted style="display: none;" playsinline>
+        <source src="https://bryancsc-umich.github.io/experiments/360/testvid2.mp4" type="video/mp4" style="display: none;">
     </video>
     <canvas id="my-canvas" width="720" height="480"></canvas>
 </body>

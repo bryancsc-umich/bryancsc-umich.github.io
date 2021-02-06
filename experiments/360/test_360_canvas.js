@@ -5,9 +5,7 @@ var processor = {
       }
       this.computeFrame();
       var self = this;
-      setTimeout(function () {
-        self.timerCallback();
-      }, 16); // roughly 60 frames per second
+      window.requestAnimationFrame(function() { self.timerCallback() });
     },
   
     doLoad: function() {
@@ -42,14 +40,15 @@ var processor = {
 };
 
 window.addEventListener('load', function() {
+    console.log("Using animation frame!");
     processor.doLoad();
-    // var canvasStream = document.getElementById('my-canvas').captureStream(25);
+    var canvasStream = document.getElementById('my-canvas').captureStream(25);
 
-    // var element = document.querySelector('#my-video-2')
-    // element.srcObject = canvasStream;
-    // element.onloadedmetadata = function(e) {
-    //     element.play();
-    // };
+    var element = document.querySelector('#my-video-2')
+    element.srcObject = canvasStream;
+    element.onloadedmetadata = function(e) {
+        element.play();
+    };
     document.querySelector('#my-video').play();
     // document.querySelector('.a-enter-vr-button').click();
     // document.querySelector("#vsphere").components.material.material.map.image.play();
