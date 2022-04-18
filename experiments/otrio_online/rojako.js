@@ -139,7 +139,7 @@ function verifyBoard(selectedCell, selectedToken) {
     }
 
     // Decrease or increase.
-    if (board[firstInRow+1]['m'] === currPlayer && ((board[firstInRow]['s'] === currPlayer && board[firstInRow+3]['l'] === currPlayer) || (board[firstInRow]['l'] === currPlayer && board[firstInRow+3]['s'] === currPlayer))) {
+    if (board[firstInRow+1]['m'] === currPlayer && ((board[firstInRow]['s'] === currPlayer && board[firstInRow+2]['l'] === currPlayer) || (board[firstInRow]['l'] === currPlayer && board[firstInRow+2]['s'] === currPlayer))) {
         return true;
     }
 
